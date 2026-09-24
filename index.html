@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对不起</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', -apple-system, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 700px;
+            width: 100%;
+            padding: 60px 40px;
+            position: relative;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .heart {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 30px;
+            position: relative;
+            animation: heartbeat 1.2s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px rgba(255, 107, 157, 0.6));
+        }
+
+        @keyframes heartbeat {
+            0% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 20px rgba(255, 107, 157, 0.6));
+            }
+            14% {
+                transform: scale(1.15);
+                filter: drop-shadow(0 0 30px rgba(255, 107, 157, 0.9));
+            }
+            28% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 20px rgba(255, 107, 157, 0.6));
+            }
+            42% {
+                transform: scale(1.15);
+                filter: drop-shadow(0 0 30px rgba(255, 107, 157, 0.9));
+            }
+            70% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 20px rgba(255, 107, 157, 0.6));
+            }
+        }
+
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 52px;
+            height: 84px;
+            background: linear-gradient(135deg, #ff6b9d 0%, #ff8fab 100%);
+            border-radius: 52px 52px 0 0;
+        }
+
+        .heart::before {
+            left: 50px;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+        }
+
+        .heart::after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+
+        /* 添加跳动的小爱心装饰 */
+        .floating-hearts {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200px;
+            height: 200px;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .floating-heart {
+            position: absolute;
+            font-size: 20px;
+            animation: float-up 3s ease-in-out infinite;
+            opacity: 0;
+        }
+
+        @keyframes float-up {
+            0% {
+                transform: translateY(0) scale(0);
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100px) scale(1);
+                opacity: 0;
+            }
+        }
+
+        .floating-heart:nth-child(1) {
+            left: 50%;
+            animation-delay: 0s;
+        }
+
+        .floating-heart:nth-child(2) {
+            left: 60%;
+            animation-delay: 1s;
+        }
+
+        .floating-heart:nth-child(3) {
+            left: 40%;
+            animation-delay: 2s;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ff6b9d;
+            font-size: 3em;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .letter {
+            color: #333;
+            line-height: 2;
+            font-size: 1.1em;
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        .letter p {
+            margin-bottom: 20px;
+            text-indent: 2em;
+        }
+
+        .signature {
+            text-align: right;
+            font-style: italic;
+            color: #666;
+            margin-top: 40px;
+            font-size: 1.1em;
+        }
+
+        .flowers {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .flower {
+            position: absolute;
+            font-size: 30px;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        .flower:nth-child(1) { left: 10%; animation-duration: 8s; animation-delay: 0s; }
+        .flower:nth-child(2) { left: 20%; animation-duration: 10s; animation-delay: 2s; }
+        .flower:nth-child(3) { left: 30%; animation-duration: 7s; animation-delay: 4s; }
+        .flower:nth-child(4) { left: 40%; animation-duration: 9s; animation-delay: 1s; }
+        .flower:nth-child(5) { left: 50%; animation-duration: 11s; animation-delay: 3s; }
+        .flower:nth-child(6) { left: 60%; animation-duration: 8s; animation-delay: 5s; }
+        .flower:nth-child(7) { left: 70%; animation-duration: 10s; animation-delay: 2.5s; }
+        .flower:nth-child(8) { left: 80%; animation-duration: 7s; animation-delay: 4.5s; }
+        .flower:nth-child(9) { left: 90%; animation-duration: 9s; animation-delay: 1.5s; }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 30px;
+            }
+
+            h1 {
+                font-size: 2.5em;
+            }
+
+            .letter {
+                font-size: 1em;
+            }
+
+            .heart {
+                width: 80px;
+                height: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="flowers">
+        <div class="flower">🌸</div>
+        <div class="flower">🌺</div>
+        <div class="flower">🌹</div>
+        <div class="flower">💐</div>
+        <div class="flower">🌷</div>
+        <div class="flower">🌸</div>
+        <div class="flower">🌺</div>
+        <div class="flower">🌹</div>
+        <div class="flower">💐</div>
+    </div>
+
+    <div class="container">
+        <div class="floating-hearts">
+            <div class="floating-heart">💕</div>
+            <div class="floating-heart">💕</div>
+            <div class="floating-heart">💕</div>
+        </div>
+        <div class="heart"></div>
+        <h1>对不起</h1>
+
+        <div class="letter">
+            <p>亲爱的：</p>
+
+            <p>我知道我错了。我不该问那些不该问的问题，让你生气了。现在想起来，我真的很后悔，我的话伤害到了你，这是我最不想看到的，我说过让你天天开心也没做到。</p>
+
+            <p>我知道一旦说出口，就像泼出去的水，无法收回，也许会因为这一句让你没那么喜欢我。但我还是想真诚地向你道歉。你对我来说很重要，我珍惜我们在一起的每一刻，我不想因为我的傻逼而让你难过。</p>
+
+            <p>我会努力改正自己，学会在说话之前先想一想，不再让你因为我而不开心。我希望你能给我一个机会，让我用行动来证明我的改变。</p>
+
+            <p>对不起，真的对不起。希望你能原谅我这一次。我会好好反省，不会再犯同样的错误。这是我第一次看你这么生气，我真的很心疼，真的很后悔。</p>
+
+            <p>你的笑容是我最想看到的，你的开心是我最大的心愿。</p>
+        </div>
+
+        <div class="signature">
+            <p>会一直陪着你的人</p>
+            <p id="date"></p>
+        </div>
+    </div>
+
+    <script>
+        // 显示当前日期
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = today.getMonth() + 1;
+        const day = today.getDate();
+        document.getElementById('date').textContent = `${year}年${month}月${day}日`;
+    </script>
+</body>
+</html>
